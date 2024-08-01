@@ -1,0 +1,3 @@
+0 metal
+1 plastico
+2 outros
