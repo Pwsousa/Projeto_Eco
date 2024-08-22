@@ -1,63 +1,81 @@
-from keras.models import load_model  # TensorFlow is required for Keras to work
+import tensorflow as tf
+from tensorflow.keras.models import load_model
 import cv2  # Install opencv-python
 import numpy as np
 
+import tensorflow as tf
+from tensorflow.keras.models import load_model
+import cv2
+import numpy as np
 
 def valida_item():
-
     # Disable scientific notation for clarity
     np.set_printoptions(suppress=True)
 
     # Load the model
-    model = load_model("/home/keep/PycharmProjects/Projeto_Eco/keras_model.h5", compile=False)
+    model = load_model("C:/Users/felip/PycharmProjects/Projeto_Eco/meu_modelo_cnn.h5", compile=False)
 
     # Load the labels
-    class_names = open("/home/keep/PycharmProjects/Projeto_Eco/labels.txt", "r").readlines()
+    class_names = {}
+    with open("C:/Users/felip/PycharmProjects/Projeto_Eco/labels.txt", "r") as file:
+        for line in file:
+            index, label = line.strip().split(maxsplit=1)
+            class_names[int(index)] = label
 
-    # CAMERA can be 0 or 1 based on default camera of your computer
+    print("Class names:", class_names)
+
+    # Initialize the camera
     camera = cv2.VideoCapture(0)
 
-    while True:
-        # Grab the webcamera's image.
-        ret, image = camera.read(0)
+    if not camera.isOpened():
+        print("Error: Camera not accessible")
+        return
 
-        # Resize the raw image into (224-height,224-width) pixels
-        image = cv2.resize(image, (224, 224), interpolation=cv2.INTER_AREA)
+    while True:
+        # Grab the webcamera's image
+        ret, image = camera.read()
+        if not ret:
+            print("Failed to grab frame")
+            break
+
+        # Resize the image to the expected input size for the model
+        image_resized = cv2.resize(image, (150, 150), interpolation=cv2.INTER_AREA)
 
         # Show the image in a window
-        cv2.imshow("Webcam Image", image)
+        cv2.imshow("Webcam Image", image_resized)
 
-        # Make the image a numpy array and reshape it to the models input shape.
-        image = np.asarray(image, dtype=np.float32).reshape(1, 224, 224, 3)
+        # Prepare the image for prediction
+        image_array = np.asarray(image_resized, dtype=np.float32)
+        image_array = (image_array / 255.0)  # Normalizing to [0,1]
+        image_array = image_array.reshape(1, 150, 150, 3)
 
-        # Normalize the image array
-        image = (image / 127.5) - 1
-
-        # Predicts the model
-        prediction = model.predict(image)
+        # Predict using the model
+        prediction = model.predict(image_array)
         index = np.argmax(prediction)
         class_name = class_names[index]
         confidence_score = prediction[0][index]
 
         # Print prediction and confidence score
-        print("Class:", class_name[2:], end="")
-        print("Confidence Score:", str(np.round(confidence_score * 100))[:-2], "%")
+        print("Class:", class_name, end=" ")
+        print("Confidence Score:", str(np.round(confidence_score * 100, 2)) + "%")
 
-        # Listen to the keyboard for presses.
+        # Listen to the keyboard for presses
         keyboard_input = cv2.waitKey(1)
 
-        print(confidence_score)
-        print(class_name[2:])
-
-        if (class_name[2:] == "metal\n") and (confidence_score > 0.95):
+        if (class_name == "glass" and confidence_score > 0.95):
+            print("Detected class 'glass' with high confidence.")
             return 1
 
-        if (class_name[2:] == "plastico\n") and (confidence_score > 0.95):
+        if (class_name == "metal" and confidence_score > 0.95):
+            print("Detected class 'metal' with high confidence.")
             return 2
 
-        # 27 is the ASCII for the esc key on your keyboard.
+        # 27 is the ASCII for the ESC key
         if keyboard_input == 27:
+            print("Exiting...")
             break
 
+    # Release the camera and close all windows
     camera.release()
     cv2.destroyAllWindows()
+

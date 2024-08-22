@@ -5,11 +5,11 @@ def main():
         #captura de imagens
         cod = valida_item()
         if cod == 1:
-            print("O objeto depositado é do tipo metal\n")
+            print("O objeto depositado é do tipo vidro\n")
             #acionar servo motor 1
 
         elif cod == 2:
-            print("O objeto depositado é do tipo plástico\n")
+            print("O objeto depositado é do tipo metal\n")
             # acionar servo motor 2
 
         #inicio do jogo
