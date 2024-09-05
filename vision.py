@@ -1,7 +1,4 @@
-import tensorflow as tf
-from tensorflow.keras.models import load_model
-import cv2  # Install opencv-python
-import numpy as np
+
 
 import tensorflow as tf
 from tensorflow.keras.models import load_model
@@ -13,11 +10,12 @@ def valida_item():
     np.set_printoptions(suppress=True)
 
     # Load the model
-    model = load_model("C:/Users/felip/PycharmProjects/Projeto_Eco/meu_modelo_cnn.h5", compile=False)
+
+    model = load_model("C:/Users/felip/PycharmProjects/Projeto_Eco/Model cnn/models/alexNet.h5", compile=False)
 
     # Load the labels
     class_names = {}
-    with open("C:/Users/felip/PycharmProjects/Projeto_Eco/labels.txt", "r") as file:
+    with open("C:/Users/felip/PycharmProjects/Projeto_Eco/Model cnn/models/labels.txt", "r") as file:
         for line in file:
             index, label = line.strip().split(maxsplit=1)
             class_names[int(index)] = label

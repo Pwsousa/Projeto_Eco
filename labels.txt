@@ -1,3 +1,0 @@
-0 glass
-1 metal
-2 outros
