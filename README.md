@@ -47,9 +47,29 @@ Este projeto foi desenvolvido com as seguintes tecnologias
   ~~~ python
   $ python pip install RPI.GPIO
   ~~~
+
+## Arquitetura do projeto
+
+![Diagrama de Arquitetura](Images/Arquitetura_projeto.png)
+
+## Diagrama de blocos 
+
+![Diagrama de blocos](Images/Diagrama_de_blocos.png)
+
+## Máquina de estados
+
+![Máquina de Estados](Images/Maquina_de_estados.png)
+
+## Diagrama Elétrico
+
+![Diagrama elétrico]()
+
+
   
 
-
+## Autores
+- [Felipe Braz](https://github.com/felipebrazfb333)
+- [Pedro Wilson](https://github.com/Pwsouza)
 
 
 
