@@ -41,12 +41,6 @@ Este projeto foi desenvolvido com as seguintes tecnologias
   ~~~ python 
   $ python pip install pygame=1.9.6
   ~~~
-  
-- [RPIGPIO] (https://pypi.org/project/RPi.GPIO/)
-  - Para instalar a bibliotecas RPIGPIO
-  ~~~ python
-  $ python pip install RPI.GPIO
-  ~~~
 
 ## Arquitetura do projeto
 
