@@ -61,6 +61,8 @@ Este projeto foi desenvolvido com as seguintes tecnologias
 
 ![Diagrama elétrico](Images/Esquematico_conexao_servos.png)
 
+## Prototipo Futuro para o fliperama
+https://www.figma.com/design/0f0Bag1AlzG2uF1EPTE9In/Ecorama?node-id=1-2&m=dev&t=lQoj1Hq8c9NTdhzq-1
 ## Autores
 - [Felipe Braz](https://github.com/felipebrazfb333)
 - [Pedro Wilson](https://github.com/Pwsouza)
