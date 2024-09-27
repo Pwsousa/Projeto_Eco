@@ -56,7 +56,7 @@ Este projeto foi desenvolvido com as seguintes tecnologias
 
 ## Diagrama Elétrico
 
-![Diagrama elétrico]()
+![Diagrama elétrico](Images/Esquematico_conexao_servos.png)
 
 
   
