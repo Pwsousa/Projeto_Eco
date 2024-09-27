@@ -10,8 +10,7 @@ def valida_item():
     np.set_printoptions(suppress=True)
 
     # Load the model
-
-    model = load_model("C:/Users/felip/PycharmProjects/Projeto_Eco/Model cnn/models/alexNet.h5", compile=False)
+    model = load_model("C:/Users/felip/PycharmProjects/Projeto_Eco/Model cnn/models/cnn1_vf.h5", compile=False)
 
     # Load the labels
     class_names = {}
@@ -49,6 +48,7 @@ def valida_item():
 
         # Predict using the model
         prediction = model.predict(image_array)
+        print("Prediction probabilities:", prediction)
         index = np.argmax(prediction)
         class_name = class_names[index]
         confidence_score = prediction[0][index]
@@ -68,6 +68,10 @@ def valida_item():
             print("Detected class 'metal' with high confidence.")
             return 2
 
+        if (class_name == "plastic" and confidence_score > 0.95):
+            print("Detected class 'plastic' with high confidence.")
+            return 3
+
         # 27 is the ASCII for the ESC key
         if keyboard_input == 27:
             print("Exiting...")
@@ -76,4 +80,3 @@ def valida_item():
     # Release the camera and close all windows
     camera.release()
     cv2.destroyAllWindows()
-
