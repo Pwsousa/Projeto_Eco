@@ -2,6 +2,9 @@
 
 Este projeto tem como objetivo a contrução de uma PoC(Proof of Concept) que consiste em dispositivo composto por um fliperama, integrado com visão computacional para identificação de diferentes tipos de materiais recicláveis e realização da separação adequada visando contribuir para o processo de conscientização sobre a importância da coleta seletiva para o meio ambiente.
 
+## Link para download da rede neural convolucional treinada
+https://drive.google.com/file/d/1GrA95scyMCh0uJhb7LIp1W_FM5i6ENZy/view?usp=sharing
+
 # Tecnologias 💻
 
 Este projeto foi desenvolvido com as seguintes tecnologias 
@@ -57,9 +60,6 @@ Este projeto foi desenvolvido com as seguintes tecnologias
 ## Diagrama Elétrico
 
 ![Diagrama elétrico](Images/Esquematico_conexao_servos.png)
-
-
-  
 
 ## Autores
 - [Felipe Braz](https://github.com/felipebrazfb333)
