@@ -1,3 +1,4 @@
 0 glass
 1 metal
 2 outros
+3 plastic
